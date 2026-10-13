@@ -1,0 +1,11 @@
+# add these lines to sp500_replica/.gitignore
+.env
+part5/runs/
+team_dbt_checks/target/
+team_dbt_checks/logs/
+.env
+*.json
+!sp500_panel_schema.json
+profiles.yml
+__pycache__/
+dagster_home*/

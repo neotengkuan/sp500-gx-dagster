@@ -1,0 +1,11 @@
+# Copy this block into ~/.dbt/profiles.yml (your home folder, NOT the repo).
+team_dbt_checks:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth                      # uses your gcloud login; no key file
+      project: friendly-autumn-509313-n3 # test queries run and are billed here
+      dataset: team2_dbt_scratch         # dbt needs a default dataset; nothing is built
+      location: US
+      threads: 4

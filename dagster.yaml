@@ -1,0 +1,16 @@
+# Dagster keeps run history, schedules and logs in the Postgres container (survives restarts)
+storage:
+  postgres:
+    postgres_db:
+      username: {env: DAGSTER_PG_USER}
+      password: {env: DAGSTER_PG_PASSWORD}
+      hostname: dagster_postgres
+      db_name: {env: DAGSTER_PG_DB}
+      port: 5432
+run_coordinator:
+  module: dagster.core.run_coordinator
+  class: QueuedRunCoordinator
+  config:
+    max_concurrent_runs: 1          # one pipeline run at a time on a laptop
+telemetry:
+  enabled: false

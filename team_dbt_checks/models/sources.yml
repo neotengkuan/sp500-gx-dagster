@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: proj2sp500                       # Suhana's star schema (read only)
+    database: dsaimodule2-509312
+    schema: proj2sp500
+    tables:
+      - name: public_proj2_sp500           # raw, loaded by Meltano
+      - name: dim_ticker
+        columns:
+          - name: ticker
+            data_tests: [unique, not_null]
+          - name: sector
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["Communication Services", "Consumer Discretionary",
+                             "Consumer Staples", "Energy", "Financials", "Health Care",
+                             "Industrials", "Information Technology", "Materials",
+                             "Real Estate", "Utilities"]
+      - name: fact_dailyprice
+        columns:
+          - name: ticker
+            data_tests:
+              - not_null
+              - relationships:
+                  arguments:
+                    to: source('proj2sp500', 'dim_ticker')
+                    field: ticker
+          - name: date
+            data_tests: [not_null]
+          - name: close
+            data_tests: [not_null]
+          - name: adj_close
+            data_tests: [not_null]
+
+  - name: team2_marts                      # my Sharpe mart (I own this one)
+    database: friendly-autumn-509313-n3
+    schema: team2_marts
+    tables:
+      - name: mart_sharpe
+        columns:
+          - name: period
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: ["1Y", "5Y"]
+          - name: sharpe
+            data_tests: [not_null]

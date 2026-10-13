@@ -1,0 +1,19 @@
+                          0
+n_rows               622689
+tickers                 503
+unreadable_dates          0
+unreadable_prices         0
+unreadable_volume         0
+blank_tickers             0
+duplicate_keys            0
+days_since_last_row       7
+meltano_batches           1
+ PASS expect_column_values_to_be_between n_rows 0 [coverage]
+ PASS expect_column_values_to_be_between tickers 0 [coverage]
+ PASS expect_column_values_to_be_between meltano_batches 0 [source integrity]
+ PASS expect_column_values_to_be_between unreadable_dates 0 [schema validity]
+ PASS expect_column_values_to_be_between unreadable_prices 0 [schema validity]
+ PASS expect_column_values_to_be_between unreadable_volume 0 [schema validity]
+ PASS expect_column_values_to_be_between blank_tickers 0 [completeness]
+ PASS expect_column_values_to_be_between duplicate_keys 0 [uniqueness]
+team_raw_meltano_suite: PASSED

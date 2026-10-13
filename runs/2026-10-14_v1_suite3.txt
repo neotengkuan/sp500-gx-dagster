@@ -1,0 +1,49 @@
+                               0
+rows_fact_minus_raw            0
+fact_columns                  41
+null_core                      0
+share_null_mkt_cap        0.0217
+dup_ticker_date                0
+dup_dim_ticker                 0
+bad_prices                     0
+negative_volume                0
+zero_volume_days             327
+share_mktcap_mismatch        0.0
+share_pe_mismatch         0.0007
+mkt_cap_above_10tn           228
+mkt_cap_below_1bn           2115
+unreviewed_extreme_moves       0
+weekend_rows                   0
+lookahead_rows                 0
+tickers_multi_date_added       0
+tickers_last_day             503
+sectors                       11
+tickers_with_gaps              2
+orphan_tickers                 0
+daily_return_mismatch          0
+sma200_wrong_nulls             0
+ PASS expect_column_values_to_be_between rows_fact_minus_raw 0 [1 source integrity]
+ PASS expect_column_values_to_be_between fact_columns 0 [2 schema validity]
+ PASS expect_column_values_to_be_between null_core 0 [3 completeness]
+ PASS expect_column_values_to_be_between dup_ticker_date 0 [4 uniqueness]
+ PASS expect_column_values_to_be_between dup_dim_ticker 0 [4 uniqueness]
+ PASS expect_column_values_to_be_between bad_prices 0 [5 price validity]
+ PASS expect_column_values_to_be_between negative_volume 0 [6 volume validity]
+ PASS expect_column_values_to_be_between unreviewed_extreme_moves 0 [9 outliers]
+ PASS expect_column_values_to_be_between weekend_rows 0 [10 temporal]
+ PASS expect_column_values_to_be_between lookahead_rows 0 [10 temporal]
+ PASS expect_column_values_to_be_between tickers_multi_date_added 0 [11 snapshot consistency]
+ PASS expect_column_values_to_be_between tickers_last_day 0 [12 coverage]
+ PASS expect_column_values_to_be_between sectors 0 [12 coverage]
+ PASS expect_column_values_to_be_between orphan_tickers 0 [13 referential integrity]
+ PASS expect_column_values_to_be_between daily_return_mismatch 0 [14 post-ELT]
+ PASS expect_column_values_to_be_between sma200_wrong_nulls 0 [14 post-ELT]
+michael14_critical_suite: PASSED
+ PASS expect_column_values_to_be_between share_null_mkt_cap 0 [3 completeness]
+ PASS expect_column_values_to_be_between zero_volume_days 0 [6 volume validity]
+ PASS expect_column_values_to_be_between share_mktcap_mismatch 0 [7 cross-field]
+ PASS expect_column_values_to_be_between share_pe_mismatch 0 [7 cross-field]
+ FAIL expect_column_values_to_be_between mkt_cap_above_10tn 1 [8 financial reasonableness]
+ FAIL expect_column_values_to_be_between mkt_cap_below_1bn 1 [8 financial reasonableness]
+ FAIL expect_column_values_to_be_between tickers_with_gaps 1 [12 coverage]
+michael14_warning_suite: FAILED

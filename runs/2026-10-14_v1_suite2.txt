@@ -1,0 +1,12 @@
+ PASS expect_table_row_count_to_equal  45 
+ PASS expect_column_values_to_be_in_set column_name 0 [schema validity]
+ PASS expect_column_values_to_not_be_null expected_type 0 [schema validity]
+ PASS expect_column_values_to_be_in_set type_ok 0 [schema validity]
+schema_contract_suite: PASSED
+ PASS expect_table_row_count_to_be_between  503 
+ PASS expect_column_values_to_not_be_null ticker 0 [uniqueness / completeness]
+ PASS expect_column_values_to_be_unique ticker 0 [uniqueness / completeness]
+ PASS expect_column_values_to_not_be_null company 0 [completeness]
+ PASS expect_column_values_to_be_in_set sector 0 [schema validity (domain)]
+ PASS expect_column_values_to_not_be_null sub_industry 0 [completeness]
+dim_ticker_suite: PASSED

@@ -1,0 +1,8 @@
+name: team_dbt_checks
+version: "1.0"
+profile: team_dbt_checks          # a block in ~/.dbt/profiles.yml (never committed)
+
+# This project builds NOTHING. It only tests Suhana's tables (declared as sources)
+# and my Sharpe mart, so it is safe to run against a teammate's read-only dataset.
+test-paths: ["tests"]
+model-paths: ["models"]

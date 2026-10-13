@@ -1,0 +1,35 @@
+# Start:  docker compose up -d --build      Stop:  docker compose down
+# UI:     http://localhost:3000             Logs:  docker compose logs -f dagster_daemon
+services:
+  dagster_postgres:                    # Dagster's memory (runs, schedules, logs)
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${DAGSTER_PG_USER}
+      POSTGRES_PASSWORD: ${DAGSTER_PG_PASSWORD}
+      POSTGRES_DB: ${DAGSTER_PG_DB}
+    volumes:
+      - dagster_pg:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  dagster_webserver:                   # the web UI: asset graph, run history, "Materialize"
+    build: .
+    command: dagster-webserver -h 0.0.0.0 -p 3000 -w /opt/dagster/workspace.yaml
+    ports: ["3000:3000"]
+    env_file: .env
+    volumes: &mounts
+      - ./:/opt/sp500                                                         # your repo (code + data)
+      - ${HOME}/.config/gcloud/application_default_credentials.json:/gcloud/adc.json:ro   # your login, read only
+      - ${HOME}/.dbt:/root/.dbt:ro                                            # dbt profiles, read only
+    depends_on: [dagster_postgres]
+    restart: unless-stopped
+
+  dagster_daemon:                      # the clock: fires the 07:30 schedule, runs the queue
+    build: .
+    command: dagster-daemon run -w /opt/dagster/workspace.yaml
+    env_file: .env
+    volumes: *mounts
+    depends_on: [dagster_postgres]
+    restart: unless-stopped
+
+volumes:
+  dagster_pg:
