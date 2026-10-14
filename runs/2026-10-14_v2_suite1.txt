@@ -1,0 +1,22 @@
+/home/neotk/miniconda3/envs/elt/lib/python3.11/site-packages/google/cloud/bigquery/table.py:2128: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+                          0
+n_rows               622710
+tickers                 503
+unreadable_dates          0
+unreadable_prices         0
+unreadable_volume         0
+blank_tickers             0
+duplicate_keys            0
+days_since_last_row       6
+meltano_batches           1
+Calculating Metrics:   0%|          | 0/59 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/59 [00:00<?, ?it/s]Calculating Metrics:   3%|▎         | 2/59 [00:00<00:00, 1479.21it/s]Calculating Metrics:   3%|▎         | 2/59 [00:00<00:00, 1223.90it/s]Calculating Metrics:   5%|▌         | 3/59 [00:00<00:00, 1740.13it/s]Calculating Metrics:   5%|▌         | 3/59 [00:00<00:00, 1627.17it/s]Calculating Metrics:  32%|███▏      | 19/59 [00:00<00:00, 2531.59it/s]Calculating Metrics:  32%|███▏      | 19/59 [00:00<00:00, 2427.70it/s]Calculating Metrics: 100%|██████████| 59/59 [00:00<00:00, 3038.53it/s]Calculating Metrics: 100%|██████████| 59/59 [00:00<00:00, 3011.21it/s]Calculating Metrics: 100%|██████████| 59/59 [00:00<00:00, 3005.25it/s]Calculating Metrics: 100%|██████████| 59/59 [00:00<00:00, 2991.66it/s]
+ PASS expect_column_values_to_be_between n_rows 0 [coverage]
+ PASS expect_column_values_to_be_between tickers 0 [coverage]
+ PASS expect_column_values_to_be_between meltano_batches 0 [source integrity]
+ PASS expect_column_values_to_be_between unreadable_dates 0 [schema validity]
+ PASS expect_column_values_to_be_between unreadable_prices 0 [schema validity]
+ PASS expect_column_values_to_be_between unreadable_volume 0 [schema validity]
+ PASS expect_column_values_to_be_between blank_tickers 0 [completeness]
+ PASS expect_column_values_to_be_between duplicate_keys 0 [uniqueness]
+team_raw_meltano_suite: PASSED

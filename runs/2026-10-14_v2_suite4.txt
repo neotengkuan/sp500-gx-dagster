@@ -1,0 +1,34 @@
+/home/neotk/miniconda3/envs/elt/lib/python3.11/site-packages/google/cloud/bigquery/table.py:2128: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+                              0
+mart_rows                  1006
+mart_tickers_1y             503
+mart_tickers_5y             503
+fact_tickers                503
+mart_nulls                    0
+implausible_sharpe            0
+loss_beyond_100pct            0
+implausible_vol               0
+ctva_rows_in_views            0
+sectors_1y                   11
+sectors_5y                   11
+min_stocks_with_sma         491
+breadth_dates              1056
+unreviewed_extreme_moves      0
+mart_newer_than_fact_s    13429
+Calculating Metrics:   0%|          | 0/101 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/101 [00:00<?, ?it/s]Calculating Metrics:   2%|▏         | 2/101 [00:00<00:00, 1468.08it/s]Calculating Metrics:   2%|▏         | 2/101 [00:00<00:00, 1103.33it/s]Calculating Metrics:   3%|▎         | 3/101 [00:00<00:00, 1543.16it/s]Calculating Metrics:   3%|▎         | 3/101 [00:00<00:00, 1354.02it/s]Calculating Metrics:  31%|███       | 31/101 [00:00<00:00, 2449.30it/s]Calculating Metrics:  31%|███       | 31/101 [00:00<00:00, 2393.79it/s]Calculating Metrics: 100%|██████████| 101/101 [00:00<00:00, 2434.60it/s]Calculating Metrics: 100%|██████████| 101/101 [00:00<00:00, 2423.07it/s]Calculating Metrics: 100%|██████████| 101/101 [00:00<00:00, 2420.56it/s]Calculating Metrics: 100%|██████████| 101/101 [00:00<00:00, 2412.58it/s]
+ PASS expect_column_values_to_be_between mart_rows 0 [completeness]
+ PASS expect_column_values_to_be_between mart_tickers_1y 0 [coverage]
+ PASS expect_column_values_to_be_between mart_tickers_5y 0 [coverage]
+ PASS expect_column_values_to_be_between mart_nulls 0 [completeness]
+ PASS expect_column_values_to_be_between implausible_sharpe 0 [outliers]
+ PASS expect_column_values_to_be_between loss_beyond_100pct 0 [financial reasonableness]
+ PASS expect_column_values_to_be_between implausible_vol 0 [outliers]
+ PASS expect_column_values_to_be_between ctva_rows_in_views 0 [agreed exclusion]
+ PASS expect_column_values_to_be_between sectors_1y 0 [coverage]
+ PASS expect_column_values_to_be_between sectors_5y 0 [coverage]
+ PASS expect_column_values_to_be_between min_stocks_with_sma 0 [post-ELT (SMA-200)]
+ PASS expect_column_values_to_be_between breadth_dates 0 [post-ELT (SMA-200)]
+ PASS expect_column_values_to_be_between unreviewed_extreme_moves 0 [outliers]
+ PASS expect_column_values_to_be_between mart_newer_than_fact_s 0 [freshness]
+pre_part5_gate: PASSED

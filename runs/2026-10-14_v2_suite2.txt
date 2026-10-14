@@ -1,0 +1,18 @@
+/home/neotk/miniconda3/envs/elt/lib/python3.11/site-packages/google/cloud/bigquery/table.py:2128: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Calculating Metrics:   0%|          | 0/25 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/25 [00:00<?, ?it/s]Calculating Metrics:  16%|█▌        | 4/25 [00:00<00:00, 3858.61it/s]Calculating Metrics:  16%|█▌        | 4/25 [00:00<00:00, 3309.12it/s]Calculating Metrics:  24%|██▍       | 6/25 [00:00<00:00, 4660.34it/s]Calculating Metrics:  24%|██▍       | 6/25 [00:00<00:00, 4434.51it/s]Calculating Metrics:  44%|████▍     | 11/25 [00:00<00:00, 816.29it/s]Calculating Metrics:  44%|████▍     | 11/25 [00:00<00:00, 803.02it/s]Calculating Metrics: 100%|██████████| 25/25 [00:00<00:00, 1024.91it/s]Calculating Metrics: 100%|██████████| 25/25 [00:00<00:00, 1018.24it/s]Calculating Metrics: 100%|██████████| 25/25 [00:00<00:00, 1016.62it/s]Calculating Metrics: 100%|██████████| 25/25 [00:00<00:00, 1012.10it/s]
+/home/neotk/miniconda3/envs/elt/lib/python3.11/site-packages/google/cloud/bigquery/table.py:2128: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+ PASS expect_table_row_count_to_equal  45 
+ PASS expect_column_values_to_be_in_set column_name 0 [schema validity]
+ PASS expect_column_values_to_not_be_null expected_type 0 [schema validity]
+ PASS expect_column_values_to_be_in_set type_ok 0 [schema validity]
+schema_contract_suite: PASSED
+Calculating Metrics:   0%|          | 0/33 [00:00<?, ?it/s]Calculating Metrics:   0%|          | 0/33 [00:00<?, ?it/s]Calculating Metrics:  12%|█▏        | 4/33 [00:00<00:00, 8184.01it/s]Calculating Metrics:  12%|█▏        | 4/33 [00:00<00:00, 6525.56it/s]Calculating Metrics:  18%|█▊        | 6/33 [00:00<00:00, 9127.97it/s]Calculating Metrics:  18%|█▊        | 6/33 [00:00<00:00, 8341.34it/s]Calculating Metrics:  36%|███▋      | 12/33 [00:00<00:00, 2122.80it/s]Calculating Metrics:  36%|███▋      | 12/33 [00:00<00:00, 2014.31it/s]Calculating Metrics: 100%|██████████| 33/33 [00:00<00:00, 3624.87it/s]Calculating Metrics: 100%|██████████| 33/33 [00:00<00:00, 3573.40it/s]Calculating Metrics: 100%|██████████| 33/33 [00:00<00:00, 3559.89it/s]Calculating Metrics: 100%|██████████| 33/33 [00:00<00:00, 3541.04it/s]
+ PASS expect_table_row_count_to_be_between  503 
+ PASS expect_column_values_to_not_be_null ticker 0 [uniqueness / completeness]
+ PASS expect_column_values_to_be_unique ticker 0 [uniqueness / completeness]
+ PASS expect_column_values_to_not_be_null company 0 [completeness]
+ PASS expect_column_values_to_be_in_set sector 0 [schema validity (domain)]
+ PASS expect_column_values_to_not_be_null sub_industry 0 [completeness]
+dim_ticker_suite: PASSED
