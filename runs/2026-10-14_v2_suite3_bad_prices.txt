@@ -1,0 +1,14 @@
+v2 gate 3 (suite 3) - 14 Oct 2026
+CRITICAL FAIL: bad_prices = 20 (v1 = 0)
+All 20 rows dated 2026-10-08 (last day in team v2), all "open outside high-low"
+  open below low (16): URI EG UHS MCK PHM MA AIZ TPR DD TPL WRB GL ALL TKO GDDY MO
+  open above high (4): CRL FTV PNW DGX
+
+Cross-check vs my own download (sp500_v2.sp500_panel, ends 2026-10-13):
+  2026-10-07: 503 tickers, 0 closes differ, avg diff 0.0%
+  2026-10-08: 503 tickers, 500 closes differ, avg diff 1.437%
+
+Conclusion: team v2 was downloaded while 8 Oct US session was still trading,
+so 8 Oct is a partial intraday bar (not the final close) for all stocks.
+Gate caught 20 where it is visibly impossible; the other 480 look valid but are wrong.
+Action: last complete day for v2 = 2026-10-07. Gate rule NOT loosened.
