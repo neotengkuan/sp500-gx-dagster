@@ -1,5 +1,0 @@
-# add these lines to sp500_replica/.gitignore
-.env
-part5/runs/
-team_dbt_checks/target/
-team_dbt_checks/logs/
