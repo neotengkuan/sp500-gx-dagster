@@ -5,6 +5,7 @@ WITH r AS (
   SELECT ticker, date, daily_return
   FROM `dsaimodule2-509312.proj2sp500.fact_dailyprice`
   WHERE daily_return IS NOT NULL
+    AND date <= '2026-10-07'  -- v2 8 Oct is intraday (gate 3 finding 14 Oct, runs/2026-10-14_v2_suite3_bad_prices.txt); remove once Kenny re-downloads
 ),
 bounds AS (SELECT MAX(date) AS max_date FROM r),
 periods AS (
