@@ -132,3 +132,35 @@ def supabase_serving(context: AssetExecutionContext) -> MaterializeResult:
         context.log.info("SUPABASE_DB_URL not set - Supabase copy skipped (BigQuery stays the source).")
         return MaterializeResult(metadata={"skipped": True})
     return done(sh(context, "python scripts/push_to_supabase.py"))
+
+
+# >>> NEO ADD (15 Oct 2026): Track C - my own recurring v2 extract (writes ONLY to my project)
+# ------------------------------------------------------------------ Track C: own v2 extract
+# Kenny's notebook (with my edits: retries, Parquet per year, completeness exit) -> GATE 0 on the
+# Parquet files -> load into friendly-autumn-509313-n3.sp500_v2.panel_daily. Suhana's tables untouched.
+V2 = os.environ.get("SP500_V2_DIR", "/mnt/c/Users/neote/projects/sp500_v2")
+V2_NB = os.environ.get("V2_NOTEBOOK", "sp500_panel-2.ipynb")
+
+
+@asset(group_name="own_v2", retry_policy=RetryPolicy(max_retries=1, delay=300))
+def extract_kenny_parquet(context: AssetExecutionContext) -> MaterializeResult:
+    """Run Kenny's notebook top to bottom (Wikipedia + Yahoo + SEC) -> data/<today>/sp500_panel_<year>.parquet.
+    The executed copy is kept in runs/ as the log. Retries once after 5 min (Yahoo rate limits)."""
+    today = dt.date.today().isoformat()
+    cmd = (f"mkdir -p runs && python -m jupyter nbconvert --to notebook --execute {V2_NB} "
+           f"--ExecutePreprocessor.timeout=-1 --ExecutePreprocessor.kernel_name=python3 "
+           f"--output-dir runs --output sp500_panel_run_{today}.ipynb && ls -la data/{today}")
+    return done(sh(context, cmd, cwd=V2, env={"SP500_OUT": "data"}))
+
+
+@asset(group_name="own_v2", deps=[extract_kenny_parquet])
+def gx_gate0_parquet(context: AssetExecutionContext) -> MaterializeResult:
+    """GATE 0: today's Parquet files are complete, unique, valid prices, fresh (halts the load if not)."""
+    return done(sh(context, "python suite_0_parquet_extract.py", cwd=DQ, env={"SP500_V2_DIR": V2}))
+
+
+@asset(group_name="own_v2", deps=[gx_gate0_parquet])
+def load_own_v2_bq(context: AssetExecutionContext) -> MaterializeResult:
+    """Parquet -> my BigQuery table sp500_v2.panel_daily (partitioned by month, clustered by ticker)."""
+    return done(sh(context, "python scripts/load_parquet_to_bq.py", env={"SP500_V2_DIR": V2}))
+# <<< END NEO ADD

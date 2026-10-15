@@ -22,8 +22,17 @@ team_job = define_asset_job("team_checks_and_marts", selection=AssetSelection.gr
 team_daily = ScheduleDefinition(job=team_job, cron_schedule="0 8 * * 2-6",
                                 execution_timezone="Asia/Singapore")
 
+# >>> NEO ADD (15 Oct 2026): my own recurring v2 extract, after the US close, before the team checks
+own_v2_job = define_asset_job("own_v2_extract_and_load", selection=AssetSelection.groups("own_v2"))
+own_v2_daily = ScheduleDefinition(job=own_v2_job, cron_schedule="30 6 * * 2-6",
+                                  execution_timezone="Asia/Singapore")
+# <<< END NEO ADD
+
 # >>> NEO TIDY (14 Oct 2026): only the team job and schedule
 # KIT ORIGINAL: defs = Definitions(assets=all_assets, jobs=[replica_job, team_job],
 #                                  schedules=[replica_daily, team_daily])
-defs = Definitions(assets=all_assets, jobs=[team_job], schedules=[team_daily])
+# >>> NEO ADD (15 Oct 2026): own v2 job + schedule added
+# NEO TIDY 14 Oct: defs = Definitions(assets=all_assets, jobs=[team_job], schedules=[team_daily])
+defs = Definitions(assets=all_assets, jobs=[team_job, own_v2_job], schedules=[team_daily, own_v2_daily])
+# <<< END NEO ADD
 # <<< END NEO TIDY
